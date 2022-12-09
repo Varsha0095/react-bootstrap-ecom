@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Card, Row, Col, Nav, NavLink, Navbar} from "react-bootstrap";
-import "./App.css";
+import Cart from "./components/Cart";
+import CartButton from "./components/CartButton";
+import './App.css';
 
 const productsArr = [
   {
@@ -25,10 +27,15 @@ const productsArr = [
   },
 ];
 
-let App = () => {
-  
+let App = (props) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>  
+          {show && <Cart onHide={handleClose} />}
      <Navbar className="justify-content-center" bg="dark" variant="dark">
         <Nav>
           <NavLink href="#home" className="me-5">
@@ -41,9 +48,7 @@ let App = () => {
             ABOUT
           </NavLink>
         </Nav>
-        <Button variant="outline-info">
-          Cart
-        </Button>
+        <CartButton onShow={handleShow} />
       </Navbar>
       <Card style={{ height: "10rem", backgroundColor: "#808080", marginTop: '2px' }}>
         <Card.Body
@@ -64,7 +69,7 @@ let App = () => {
         {productsArr.map((variant) => (
           <Col>
           <Card style={{width: '18rem', height: '18rem', margin: '10px'}}>
-            <Card.Title>{variant.title}</Card.Title>
+            <Card.Title className="text-center">{variant.title}</Card.Title>
             <Card.Img width={362} height={260} src={variant.imageUrl} />
             <Card.Footer className="card-footer">${variant.price}
             <Button style={{float: 'right'}}>Add To Cart</Button>
@@ -74,7 +79,7 @@ let App = () => {
         ))}
       </Row>
       </div>
-      
+     
     </>
   );
 };
