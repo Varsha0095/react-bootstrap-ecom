@@ -8,7 +8,7 @@ const defaultCartState = {
 
 const CartReducer = (state, action) => {
   if (action.type === "ADD") {
-    const updatedTotalAmount =
+    let updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.quantity;
 
     const existingCartItemIndex = state.items.findIndex(
@@ -38,7 +38,7 @@ const CartReducer = (state, action) => {
       (item) => item.id === action.id
     );
     const existingItem = state.items[existingCartItemIndex];
-    const updatedTotalAmount = state.totalAmount - existingItem.price;
+    let updatedTotalAmount = state.totalAmount - existingItem.price;
     let updatedItemsArr;
     if(existingItem.quantity === 1) {
         updatedItemsArr = state.items.filter(item => item.id !== action.id);
@@ -78,6 +78,7 @@ const CartProvider = (props) => {
     //     }
     // });
     // setUpdateItems(newItem);
+    console.log('insideHandler', id);
     dispatchCartAction({ type: "REMOVE", id: id });
   };
   const cartContext = {

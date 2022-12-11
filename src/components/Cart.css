@@ -12,3 +12,17 @@
     margin-left: 5px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+.purchaseBtn {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.closingBtn {
+    margin-left: 60%;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}

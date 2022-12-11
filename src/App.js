@@ -24,14 +24,16 @@ let App = (props) => {
       quantity: 1,
       price: item.price
     })
-    
+}
+const onRemove = (id) => {
+  cartCtx.removeItem(id);
+}
 
-  }
   console.log(cartCtx.items);
 
   return (
     <>  
-          {show && <Cart onHide={handleClose} />}
+          {show && <Cart onHide={handleClose} onRemove={onRemove} />}
      <Navbar className="justify-content-center" bg="dark" variant="dark">
         <Nav>
           <NavLink href="#home" className="me-5">
