@@ -9,7 +9,7 @@
 }
 .cardimg{
     display: block;
-    height: 180px;
-    width: 150px;
+    height: 80px;
+    width: 50px;
     object-fit: contain;
 }

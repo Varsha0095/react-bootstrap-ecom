@@ -2,5 +2,13 @@
     position: absolute;
     bottom: 10px;
     right: 20px;
+    size: 10px;
     
+}
+
+.total{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
