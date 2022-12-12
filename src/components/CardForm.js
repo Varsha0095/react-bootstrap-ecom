@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Row, Col, Card } from "react-bootstrap";
+import SeeCartButton from './SeeCartButton';
 
 
 const productsArr = [
@@ -42,6 +43,7 @@ const CardForm = (props) => {
       // props.onAddToCart(enteredAmountNumber);
   }
     return (
+      <>
         <form onSubmit={submitHandler}>
         <Card style={{height: '10rem', backgroundColor: '#808080', marginTop: '2px'}} >
         <Card.Body
@@ -73,6 +75,10 @@ const CardForm = (props) => {
       </Row>
       </div>
       </form>
+      <Card style={{marginTop: '5%', marginLeft: '40%', marginRight: '40%', marginBottom: '5%'}}>
+      <SeeCartButton onShow={props.onShow} />
+    </Card>
+    </>
     )
 };
 

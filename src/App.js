@@ -1,12 +1,12 @@
-import React, {useState, useContext} from "react";
-import { Nav, NavLink, Navbar} from "react-bootstrap";
+import { Route } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import Cart from "./components/Cart";
-import CartButton from "./components/CartButton";
-import './App.css';
+import "./App.css";
 import CardForm from "./components/CardForm";
-import CartContext from './store/cart-context';
-
-
+import CartContext from "./store/cart-context";
+import About from "./components/Pages/About";
+import Home from "./components/Pages/Home";
+import MainHeader from "./components/MainHeader";
 
 let App = (props) => {
   const cartCtx = useContext(CartContext);
@@ -22,34 +22,31 @@ let App = (props) => {
       title: item.title,
       image: item.imageUrl,
       quantity: 1,
-      price: item.price
-    })
-}
-const onRemove = (id) => {
-  cartCtx.removeItem(id);
-}
+      price: item.price,
+    });
+  };
+  const onRemove = (id) => {
+    cartCtx.removeItem(id);
+  };
 
   console.log(cartCtx.items);
 
   return (
-    <>  
-          {show && <Cart onHide={handleClose} onRemove={onRemove} />}
-     <Navbar className="justify-content-center" bg="dark" variant="dark">
-        <Nav>
-          <NavLink href="#home" className="me-5">
-            HOME
-          </NavLink>
-          <NavLink href="#store" className="me-5">
-            STORE
-          </NavLink>
-          <NavLink href="#about" className="me-5">
-            ABOUT
-          </NavLink>
-        </Nav>
-        <CartButton onShow={handleShow} />
-      </Navbar>
-      <CardForm onAddToCart={addToCartHandler} />
-     
+    <>
+      {show && <Cart onHide={handleClose} onRemove={onRemove} />}
+      <MainHeader onShow={handleShow} />
+      <main>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path='/home'>
+        <Home />
+      </Route>
+      <Route path='/store'>
+      <CardForm onAddToCart={addToCartHandler} onShow={handleShow} />        
+      </Route>
+      </main>
+      
     </>
   );
 };
