@@ -34,7 +34,6 @@ let App = (props) => {
   return (
     <>
       {show && <Cart onHide={handleClose} onRemove={onRemove} />}
-      <MainHeader onShow={handleShow} />
       <main>
       <Route path="/about">
         <About />
@@ -43,6 +42,7 @@ let App = (props) => {
         <Home />
       </Route>
       <Route path='/store'>
+      <MainHeader onShow={handleShow} />
       <CardForm onAddToCart={addToCartHandler} onShow={handleShow} />        
       </Route>
       </main>
