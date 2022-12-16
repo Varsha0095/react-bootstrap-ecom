@@ -17,6 +17,9 @@ const MainHeader = (props) => {
         <NavLink activeClassName={classes.active} to="/about" className="me-5">
           ABOUT
         </NavLink>
+        <NavLink activeClassName={classes.active} to="/contactus" className="me-5">
+          CONTACT US
+        </NavLink>
       </Nav>
       <CartButton onShow={props.onShow} />
     </Navbar>

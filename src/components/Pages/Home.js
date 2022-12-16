@@ -31,6 +31,13 @@ const Home = () => {
             >
               ABOUT
             </NavLink>
+            <NavLink
+              activeClassName={classes.active}
+              to="/contactus"
+              className="me-5"
+            >
+             CONTACT US
+            </NavLink>
           </Nav>
         </Navbar>
         </header>

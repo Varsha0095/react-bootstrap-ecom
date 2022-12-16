@@ -7,13 +7,18 @@ import CartContext from "./store/cart-context";
 import About from "./components/Pages/About";
 import Home from "./components/Pages/Home";
 import MainHeader from "./components/MainHeader";
+import ContactUs from "./components/Pages/ContactUs/ContactUs";
+import UsersList from "./components/Pages/ContactUs/UsersList";
 
 let App = (props) => {
   const cartCtx = useContext(CartContext);
   const [show, setShow] = useState(false);
+  const [users, setUsers] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+ 
 
   const addToCartHandler = (item) => {
     console.log(item);
@@ -40,6 +45,10 @@ let App = (props) => {
       </Route>
       <Route path='/home'>
         <Home />
+      </Route>
+      <Route path='/contactus'>
+        <ContactUs />
+          {/* <UsersList users={users} /> </ContactUs> */}
       </Route>
       <Route path='/store'>
       <MainHeader onShow={handleShow} />

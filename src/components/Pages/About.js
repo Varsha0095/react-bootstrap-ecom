@@ -16,6 +16,9 @@ const About = () => {
         <NavLink activeClassName={classes.active} to="/about" className="me-5">
           ABOUT
         </NavLink>
+        <NavLink activeClassName={classes.active} to="/contactus" className="me-5">
+          CONTACT US
+        </NavLink>
       </Nav>
     </Navbar>
     </header>
