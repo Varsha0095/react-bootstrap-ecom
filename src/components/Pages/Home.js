@@ -56,7 +56,10 @@ const Home = () => {
                 border: "2px solid",
                 cursor: "pointer",
                 borderRadius: "2px 2px",
-                fontStyle: "5px bold",
+                fontSize: '25px',
+                width: '20rem',
+                height: '4rem',
+                
               }}
             >
               Get Our Latest Album
@@ -72,6 +75,7 @@ const Home = () => {
                 border: "2px solid",
                 margin: "20px auto",
                 cursor: "pointer",
+                fontSize: '22px',
               }}
             >
               Play
