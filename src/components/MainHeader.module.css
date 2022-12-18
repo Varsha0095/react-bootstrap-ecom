@@ -77,6 +77,12 @@
     margin-bottom: 5px auto;
     
   }
+  .cardheader{
+    height: 70px ;
+    font-family: cursive;
+    font-size: xx-large;
+
+  }
 
    /* .header button {
     cursor: pointer;

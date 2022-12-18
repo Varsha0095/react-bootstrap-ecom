@@ -8,7 +8,7 @@ import About from "./components/Pages/About";
 import Home from "./components/Pages/Home";
 import MainHeader from "./components/MainHeader";
 import ContactUs from "./components/Pages/ContactUs/ContactUs";
-import UsersList from "./components/Pages/ContactUs/UsersList";
+import Product from "./components/Product";
 
 let App = (props) => {
   const cartCtx = useContext(CartContext);
@@ -45,6 +45,9 @@ let App = (props) => {
       </Route>
       <Route path='/home'>
         <Home />
+      </Route>
+      <Route path='/product/:id'>
+        <Product />
       </Route>
       <Route path='/contactus'>
         <ContactUs />

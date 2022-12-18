@@ -89,6 +89,9 @@ const ContactUs = (props) => {
       </header>
       {/* <AddUser onAddUser={props.onAddUser} /> */}
       <Card className={classes.card}>
+        <Card.Header className={classes.cardheader}>
+          Contact Us Form
+        </Card.Header>
         <form onSubmit={submitHandler}>
           <div className={classes.control}>
             <label htmlFor="name">Name</label>
