@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import classes from './MainHeader.module.css';
 import AuthContext from "../../NewStore/auth-context";
 
+
 const MainHeader = (props) => {
   const authCtx = useContext(AuthContext);
 
@@ -25,6 +26,7 @@ const MainHeader = (props) => {
         {isLoggedIn && (<NavLink activeClassName={classes.active} to="/contactus" className="me-5">
          CONTACT US
         </NavLink>)}
+        {isLoggedIn && (<NavLink activeClassName={classes.active} to="/profile" className="me-5">PROFILE</NavLink>)}
         
         {!isLoggedIn && (<NavLink activeClassName={classes.active} to="/login" className="me-5">
          LOGIN

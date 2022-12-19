@@ -10,6 +10,7 @@ import MainHeader from "./components/Header/MainHeader";
 import ContactUs from "./components/Pages/ContactUs";
 import Product from "./components/Pages/Product";
 import LoginPage from "./components/Pages/LoginPage";
+import ProfilePage from "./components/Pages/ProfilePage";
 
 let App = (props) => {
   const cartCtx = useContext(CartContext);
@@ -43,7 +44,7 @@ let App = (props) => {
       <main>
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <LoginPage />
           </Route>
       <Route path="/about">
         <About />
@@ -61,7 +62,9 @@ let App = (props) => {
         <ContactUs />
           {/* <UsersList users={users} /> </ContactUs> */}
       </Route>
-      
+      <Route path="/profile">
+        <ProfilePage />
+      </Route>
       <Route path='/store'>
       <MainHeader onShow={handleShow} />
       <CardForm onAddToCart={addToCartHandler} onShow={handleShow} />        
