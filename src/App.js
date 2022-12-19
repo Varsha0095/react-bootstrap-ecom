@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import Cart from "./components/Cart/Cart";
 import "./App.css";
@@ -41,10 +41,11 @@ let App = (props) => {
     <>
       {show && <Cart onHide={handleClose} onRemove={onRemove} />}
       <main>
+        <Switch>
       <Route path="/about">
         <About />
       </Route>
-      <Route path='/home'>
+      <Route path='/' exact>
         <Home />
       </Route>
       <Route path='/login'>
@@ -62,6 +63,7 @@ let App = (props) => {
       <MainHeader onShow={handleShow} />
       <CardForm onAddToCart={addToCartHandler} onShow={handleShow} />        
       </Route>
+      </Switch>
       </main>
       
     </>

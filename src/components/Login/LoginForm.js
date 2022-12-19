@@ -9,6 +9,7 @@ const LoginForm = () => {
     const passwordInputRef = useRef();
 
     const [isLogin, setIsLogin] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const switchLoginModeHandler = () => {
         setIsLogin ((prevState) => !prevState)
@@ -19,6 +20,7 @@ const LoginForm = () => {
         const enteredEmail = emailInputRef.current.value;
         const enteredPassword = passwordInputRef.current.value;
 
+        setIsLoading(true);
         if(isLogin){
         }else{
             fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBr0Gx0rDLDqMfMoJqb7ts5a1qiJCGVTTY',{
@@ -32,12 +34,17 @@ const LoginForm = () => {
                     "Content-Type": "application/json"
                 }
             }).then((res) => {
+                setIsLoading(false);
                 if(res.ok){
                     //...
                 } else {
                     return res.json().then((data) => {
                     //show error modal
-                        console.log(data);
+                    let errorMessage = 'Authentication Failed !'
+                    if(data && data.error && data.error.message){
+                        errorMessage = data.error.message;   
+                    }
+                    alert(errorMessage);
                     })
                 }
             })
@@ -63,7 +70,8 @@ const LoginForm = () => {
             <input id="password" type="password" ref={passwordInputRef} />
          </div>
             <div className={classes.actions}>
-                <button>{isLogin ? 'Login' : 'Create Account'}</button>
+               {!isLoading && <button>{isLogin ? 'Login' : 'Create Account'}</button>}
+               {isLoading && <p>Sending Request...</p>} 
             <button type="button" className={classes.toggle} onClick={switchLoginModeHandler}>{isLogin ? 'Create New Account' : 'Login with existing account'}</button>
             </div>
         </form>

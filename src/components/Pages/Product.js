@@ -3,7 +3,8 @@ import { Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import MainHeader from "../Header/MainHeader";
 import Data from "../Data/Data";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import classes from '../Pages/Product.module.css';
+// import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const Product = (props) => {
     const params = useParams();
@@ -22,14 +23,15 @@ const Product = (props) => {
     return (
         <React.Fragment>
             <MainHeader />
-            <Card style={{width: '27rem',height: '32rem' , margin: 'auto', marginTop: '20px'}}>
+            <Card style={{width: '27rem',height: '27rem' , margin: 'auto', marginTop: '40px'}}>
                 <Card.Title style={{textAlign: 'center', fontSize: 'xx large'}}>{product?.title}</Card.Title>
                 <Card.Body>
-                    <TransformWrapper defaultScale={1} defaultPositionX={100} defaultPositionY={200} >
-                        <TransformComponent>
-                    <Card.Img style={{width: '25rem', height: '25rem'}} src={product?.imageUrl} />
-                    </TransformComponent>
-                    </TransformWrapper>
+                    {/* <TransformWrapper defaultScale={1} defaultPositionX={100} defaultPositionY={200} > */}
+                        {/* <TransformComponent> */}
+                    {/* <Card.Img style={{width: '25rem', height: '25rem'}} src={product?.imageUrl} /> */}
+                    <img alt="product" src={product?.imageUrl} className={classes.productImg} />
+                    {/* </TransformComponent> */}
+                    {/* </TransformWrapper> */}
                   <Card.Text><h5>Price: ${product?.price}</h5></Card.Text>
                 </Card.Body>
             </Card>
