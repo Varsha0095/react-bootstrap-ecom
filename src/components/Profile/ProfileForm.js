@@ -1,9 +1,10 @@
 import { useRef, useContext } from 'react';
 import AuthContext from '../../NewStore/auth-context';
 import classes from './ProfileForm.module.css';
-
+import { useHistory } from 'react-router-dom';
 
 const ProfileForm = () => {
+    const history = useHistory();
     const authCtx = useContext(AuthContext);
     const newPasswordInputRef = useRef();
 
@@ -24,6 +25,7 @@ const ProfileForm = () => {
             }
         }).then ((res) => {
             //assumption: Authentication succeeded !
+            history.replace('/');
         })
     }
     return (

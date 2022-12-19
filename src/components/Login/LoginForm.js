@@ -1,4 +1,5 @@
 import React, { useState, useRef, useContext } from "react";
+// import { useHistory } from "react-router-dom";
 // import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../NewStore/auth-context";
@@ -6,6 +7,7 @@ import MainHeader from "../Header/MainHeader";
 import classes from "./LoginForm.module.css";
 
 const LoginForm = () => {
+  
     const authCtx = useContext(AuthContext);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -60,6 +62,7 @@ const LoginForm = () => {
       }).then((data) => {
         // console.log(data);
         authCtx.login(data.idToken)
+  
       }).catch((err) => {
         alert(err.message);
       })

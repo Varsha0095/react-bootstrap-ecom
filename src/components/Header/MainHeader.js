@@ -10,6 +10,10 @@ const MainHeader = (props) => {
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  }
   return (
     <header className={classes.header}>
     <Navbar className="justify-content-center" bg="dark" variant="dark">
@@ -33,7 +37,7 @@ const MainHeader = (props) => {
         </NavLink>)}
         </Nav>
         {isLoggedIn && (
-          <button>LOGOUT</button>
+          <button onClick={logoutHandler}>LOGOUT</button>
         )}
         {isLoggedIn && (
       <CartButton onShow={props.onShow} />)}
