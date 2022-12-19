@@ -1,30 +1,41 @@
+import { useContext } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import CartButton from "../Cart/CartButton";
 import { NavLink } from "react-router-dom";
 import classes from './MainHeader.module.css';
+import AuthContext from "../../NewStore/auth-context";
 
 const MainHeader = (props) => {
+  const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
   return (
     <header className={classes.header}>
     <Navbar className="justify-content-center" bg="dark" variant="dark">
       <Nav>
-        <NavLink activeClassName={classes.active} to="/home" className="me-5">
+        {isLoggedIn && (<NavLink activeClassName={classes.active} to="/home" className="me-5">
           HOME 
-        </NavLink>
-        <NavLink activeClassName={classes.active} to="/store" className="me-5">
+        </NavLink>)}
+        {isLoggedIn &&  (<NavLink activeClassName={classes.active} to="/store" className="me-5">
           STORE
-        </NavLink>
-        <NavLink activeClassName={classes.active} to="/about" className="me-5">
+        </NavLink>)}
+       {isLoggedIn && (<NavLink activeClassName={classes.active} to="/about" className="me-5">
           ABOUT
-        </NavLink>
-        <NavLink activeClassName={classes.active} to="/contactus" className="me-5">
+        </NavLink>)}
+        {isLoggedIn && (<NavLink activeClassName={classes.active} to="/contactus" className="me-5">
          CONTACT US
-        </NavLink>
-        <NavLink activeClassName={classes.active} to="/login" className="me-5">
+        </NavLink>)}
+        
+        {!isLoggedIn && (<NavLink activeClassName={classes.active} to="/login" className="me-5">
          LOGIN
-        </NavLink>
-      </Nav>
-      <CartButton onShow={props.onShow} />
+        </NavLink>)}
+        </Nav>
+        {isLoggedIn && (
+          <button>LOGOUT</button>
+        )}
+        {isLoggedIn && (
+      <CartButton onShow={props.onShow} />)}
+      
     </Navbar>
     </header>
   );

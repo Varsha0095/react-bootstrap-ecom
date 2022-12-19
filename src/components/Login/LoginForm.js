@@ -1,10 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 // import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../NewStore/auth-context";
 import MainHeader from "../Header/MainHeader";
 import classes from "./LoginForm.module.css";
 
 const LoginForm = () => {
+    const authCtx = useContext(AuthContext);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -56,7 +58,8 @@ const LoginForm = () => {
           });
         }
       }).then((data) => {
-        console.log(data);
+        // console.log(data);
+        authCtx.login(data.idToken)
       }).catch((err) => {
         alert(err.message);
       })
@@ -67,7 +70,7 @@ const LoginForm = () => {
         <NavLink to="/login" className="me-5">
           LOGIN
         </NavLink>
-      </MainHeader>
+        </MainHeader>
       <section className={classes.login}>
         <h1>{isLogin ? "Login" : "Sign Up"}</h1>
         <form onSubmit={submitHandler}>

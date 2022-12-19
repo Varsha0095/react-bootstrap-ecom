@@ -42,10 +42,13 @@ let App = (props) => {
       {show && <Cart onHide={handleClose} onRemove={onRemove} />}
       <main>
         <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
       <Route path="/about">
         <About />
       </Route>
-      <Route path='/' exact>
+      <Route path='/home'>
         <Home />
       </Route>
       <Route path='/login'>
