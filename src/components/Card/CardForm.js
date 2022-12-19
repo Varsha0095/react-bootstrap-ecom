@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Row, Col, Card } from "react-bootstrap";
-import SeeCartButton from "./SeeCartButton";
+import SeeCartButton from "../Cart/SeeCartButton";
 import { NavLink } from "react-router-dom";
 
 const productsArr = [

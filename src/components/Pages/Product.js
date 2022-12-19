@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import MainHeader from "./MainHeader";
-import Data from "./Data/Data";
+import MainHeader from "../Header/MainHeader";
+import Data from "../Data/Data";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const Product = (props) => {

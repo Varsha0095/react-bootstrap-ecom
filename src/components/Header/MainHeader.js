@@ -1,5 +1,5 @@
 import { Navbar, Nav } from "react-bootstrap";
-import CartButton from "./CartButton";
+import CartButton from "../Cart/CartButton";
 import { NavLink } from "react-router-dom";
 import classes from './MainHeader.module.css';
 
@@ -9,7 +9,7 @@ const MainHeader = (props) => {
     <Navbar className="justify-content-center" bg="dark" variant="dark">
       <Nav>
         <NavLink activeClassName={classes.active} to="/home" className="me-5">
-          HOME
+          HOME 
         </NavLink>
         <NavLink activeClassName={classes.active} to="/store" className="me-5">
           STORE
@@ -18,7 +18,10 @@ const MainHeader = (props) => {
           ABOUT
         </NavLink>
         <NavLink activeClassName={classes.active} to="/contactus" className="me-5">
-          CONTACT US
+         CONTACT US
+        </NavLink>
+        <NavLink activeClassName={classes.active} to="/login" className="me-5">
+         LOGIN
         </NavLink>
       </Nav>
       <CartButton onShow={props.onShow} />

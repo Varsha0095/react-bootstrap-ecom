@@ -1,8 +1,8 @@
-import classes from '../../../components/MainHeader.module.css';
-import { Navbar, Nav } from "react-bootstrap";
+import classes from '../Header/MainHeader.module.css';
 import { NavLink } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import MainHeader from '../Header/MainHeader';
 // import { useRef } from "react";
 // import AddUser from "./AddUser";
 
@@ -53,40 +53,15 @@ const ContactUs = (props) => {
   }
   return (
     <>
-      <header className={classes.header}>
-        <Navbar className="justify-content-center" bg="dark" variant="dark">
-          <Nav>
-            <NavLink
-              activeClassName={classes.active}
-              to="/home"
-              className="me-5"
-            >
-              HOME
-            </NavLink>
-            <NavLink
-              activeClassName={classes.active}
-              to="/store"
-              className="me-5"
-            >
-              STORE
-            </NavLink>
-            <NavLink
-              activeClassName={classes.active}
-              to="/about"
-              className="me-5"
-            >
-              ABOUT
-            </NavLink>
-            <NavLink
+        <MainHeader>
+        <NavLink
               activeClassName={classes.active}
               to="/contactus"
               className="me-5"
             >
               CONTACT US
             </NavLink>
-          </Nav>
-        </Navbar>
-      </header>
+        </MainHeader>
       {/* <AddUser onAddUser={props.onAddUser} /> */}
       <Card className={classes.card}>
         <Card.Header className={classes.cardheader}>
@@ -95,14 +70,14 @@ const ContactUs = (props) => {
         <form onSubmit={submitHandler}>
           <div className={classes.control}>
             <label htmlFor="name">Name</label>
-        <input type="text" id="name" value={name} onChange={nameChangeHandler} /></div>
+        <input type="text" id="name" value={name} placeholder="abc" onChange={nameChangeHandler} /></div>
         <div className={classes.control}>
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" value={email} onChange={emailChangeHandler} />
+        <input type="email" id="email" value={email} placeholder="abc@xyz.com" onChange={emailChangeHandler} />
         </div>
        <div className={classes.control}>
        <label htmlFor="phone">Phone</label>
-        <input type="number" id="phone" value={phone} onChange={phoneChangeHandler} />
+        <input type="number" id="phone" value={phone} placeholder="91xxxxxxxxxx" onChange={phoneChangeHandler} />
        </div>
         <div>
         <Button type='submit' variant='dark' style={{marginBottom: '10px', fontFamily: 'Verdana'}}>Submit</Button>

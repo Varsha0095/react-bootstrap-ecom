@@ -1,46 +1,22 @@
-import { Navbar, Nav, Card, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import HomeBody from "./HomeBody";
-import classes from "../MainHeader.module.css";
+import classes from "../Header/MainHeader.module.css";
 import "./Home.css";
+import MainHeader from "../Header/MainHeader";
 
 const Home = () => {
   return (
     <>
-      <header className={classes.header}>
-        <Navbar className="justify-content-center" bg="dark" variant="dark">
-          <Nav>
-            <NavLink
+        <MainHeader>
+        <NavLink
               activeClassName={classes.active}
               to="/home"
               className="me-5"
             >
               HOME
             </NavLink>
-            <NavLink
-              activeClassName={classes.active}
-              to="/store"
-              className="me-5"
-            >
-              STORE
-            </NavLink>
-            <NavLink
-              activeClassName={classes.active}
-              to="/about"
-              className="me-5"
-            >
-              ABOUT
-            </NavLink>
-            <NavLink
-              activeClassName={classes.active}
-              to="/contactus"
-              className="me-5"
-            >
-             CONTACT US
-            </NavLink>
-          </Nav>
-        </Navbar>
-        </header>
+        </MainHeader> 
         <Card
           style={{
             height: "25rem",

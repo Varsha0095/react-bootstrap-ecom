@@ -9,7 +9,7 @@ import {
   Col,
 } from "react-bootstrap";
 import "./Cart.css";
-import CartContext from "../store/cart-context";
+import CartContext from "../../store/cart-context";
 
 // const cartElements = [
 //   {
