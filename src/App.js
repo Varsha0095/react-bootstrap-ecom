@@ -52,28 +52,33 @@ let App = (props) => {
           <MainHeader onShow={handleShow} />
       <CardForm onAddToCart={addToCartHandler} onShow={handleShow} /> 
             </Route>}
-      {authCtx.isLoggedIn && <Route path="/about">
-        <About />
-      </Route>}
-      {authCtx.isLoggedIn && <Route path='/home'>
-        <Home />
-      </Route>}
+      <Route path="/about">
+      {authCtx.isLoggedIn && <About />}
+      {!authCtx.isLoggedIn && <Redirect to="/login" />}
+      </Route>
+      <Route path='/home'>
+      {authCtx.isLoggedIn && <Home />}
+      {!authCtx.isLoggedIn && <Redirect to="/login" />}
+      </Route>
       {!authCtx.isLoggedIn && <Route path='/login'>
         <LoginPage />
       </Route>}
       {authCtx.isLoggedIn && <Route path='/product/:id'>
         <Product />
       </Route>}
-      {authCtx.isLoggedIn && <Route path='/contactus'>
-        <ContactUs />
-      </Route>}
-      {authCtx.isLoggedIn && <Route path="/profile">
-        <ProfilePage />
-      </Route>}
-      {authCtx.isLoggedIn && <Route path='/store'>
+      <Route path='/contactus'>
+      {authCtx.isLoggedIn && <ContactUs />}
+      {!authCtx.isLoggedIn && <Redirect to="/login" />}
+      </Route>
+      <Route path="/profile">
+      {authCtx.isLoggedIn && <ProfilePage />}
+      {!authCtx.isLoggedIn && <Redirect to="/login" />}
+      </Route>
+      <Route path='/store'>
       <MainHeader onShow={handleShow} />
-      <CardForm onAddToCart={addToCartHandler} onShow={handleShow} />        
-      </Route>}
+      {authCtx.isLoggedIn && <CardForm onAddToCart={addToCartHandler} onShow={handleShow} />} 
+      {!authCtx.isLoggedIn && <Redirect to="/login" />}     
+      </Route>
       <Route path="*">
         <Redirect to="/" />
       </Route>

@@ -18,19 +18,19 @@ const MainHeader = (props) => {
     <header className={classes.header}>
     <Navbar className="justify-content-center" bg="dark" variant="dark">
       <Nav>
-        {isLoggedIn && (<NavLink activeClassName={classes.active} to="/home" className="me-5">
+        <NavLink activeClassName={classes.active} to="/home" className="me-5">
           HOME 
-        </NavLink>)}
-        {isLoggedIn &&  (<NavLink activeClassName={classes.active} to="/store" className="me-5">
+        </NavLink>
+        <NavLink activeClassName={classes.active} to="/store" className="me-5">
           STORE
-        </NavLink>)}
-       {isLoggedIn && (<NavLink activeClassName={classes.active} to="/about" className="me-5">
+        </NavLink>
+       <NavLink activeClassName={classes.active} to="/about" className="me-5">
           ABOUT
-        </NavLink>)}
-        {isLoggedIn && (<NavLink activeClassName={classes.active} to="/contactus" className="me-5">
+        </NavLink>
+       <NavLink activeClassName={classes.active} to="/contactus" className="me-5">
          CONTACT US
-        </NavLink>)}
-        {isLoggedIn && (<NavLink activeClassName={classes.active} to="/profile" className="me-5">PROFILE</NavLink>)}
+        </NavLink>
+        <NavLink activeClassName={classes.active} to="/profile" className="me-5">PROFILE</NavLink>
         
         {!isLoggedIn && (<NavLink activeClassName={classes.active} to="/login" className="me-5">
          LOGIN
