@@ -45,9 +45,13 @@ let App = (props) => {
       {show && <Cart onHide={handleClose} onRemove={onRemove} />}
       <main>
         <Switch>
-          <Route path="/" exact>
+          {!authCtx.isLoggedIn && <Route path="/" exact>
             <LoginPage />
-          </Route>
+          </Route>}
+          {authCtx.isLoggedIn && <Route path="/" exact>
+          <MainHeader onShow={handleShow} />
+      <CardForm onAddToCart={addToCartHandler} onShow={handleShow} /> 
+            </Route>}
       {authCtx.isLoggedIn && <Route path="/about">
         <About />
       </Route>}
