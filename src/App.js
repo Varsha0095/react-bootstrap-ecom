@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import Cart from "./components/Cart/Cart";
 import "./App.css";
@@ -11,8 +11,10 @@ import ContactUs from "./components/Pages/ContactUs";
 import Product from "./components/Pages/Product";
 import LoginPage from "./components/Pages/LoginPage";
 import ProfilePage from "./components/Pages/ProfilePage";
+import AuthContext from "./NewStore/auth-context";
 
 let App = (props) => {
+  const authCtx = useContext(AuthContext);
   const cartCtx = useContext(CartContext);
   const [show, setShow] = useState(false);
   // const [users, setUsers] = useState([]);
@@ -46,28 +48,30 @@ let App = (props) => {
           <Route path="/" exact>
             <LoginPage />
           </Route>
-      <Route path="/about">
+      {authCtx.isLoggedIn && <Route path="/about">
         <About />
-      </Route>
-      <Route path='/home'>
+      </Route>}
+      {authCtx.isLoggedIn && <Route path='/home'>
         <Home />
-      </Route>
-      <Route path='/login'>
+      </Route>}
+      {!authCtx.isLoggedIn && <Route path='/login'>
         <LoginPage />
-      </Route>
-      <Route path='/product/:id'>
+      </Route>}
+      {authCtx.isLoggedIn && <Route path='/product/:id'>
         <Product />
-      </Route>
-      <Route path='/contactus'>
+      </Route>}
+      {authCtx.isLoggedIn && <Route path='/contactus'>
         <ContactUs />
-          {/* <UsersList users={users} /> </ContactUs> */}
-      </Route>
-      <Route path="/profile">
+      </Route>}
+      {authCtx.isLoggedIn && <Route path="/profile">
         <ProfilePage />
-      </Route>
-      <Route path='/store'>
+      </Route>}
+      {authCtx.isLoggedIn && <Route path='/store'>
       <MainHeader onShow={handleShow} />
       <CardForm onAddToCart={addToCartHandler} onShow={handleShow} />        
+      </Route>}
+      <Route path="*">
+        <Redirect to="/" />
       </Route>
       </Switch>
       </main>
