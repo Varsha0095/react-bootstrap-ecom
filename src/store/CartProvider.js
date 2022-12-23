@@ -1,89 +1,67 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import CartContext from "./cart-context";
-
-const defaultCartState = {
-  items: [],
-  totalAmount: 0,
-};
-
-const CartReducer = (state, action) => {
-  if (action.type === "ADD") {
-    let updatedTotalAmount =
-      state.totalAmount + action.item.price * action.item.quantity;
-
-    const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.item.id
-    );
-    const existingCartItem = state.items[existingCartItemIndex];
-    let updatedItemsArr;
-    if (existingCartItem) {
-      let updatedItem = {
-        ...existingCartItem,
-        quantity: existingCartItem.quantity + action.item.quantity,
-      };
-      updatedItemsArr = [...state.items];
-      updatedItemsArr[existingCartItemIndex] = updatedItem;
-    } else {
-      // updatedItem = {...action.item};
-      updatedItemsArr = state.items.concat(action.item);
-    }
-
-    return {
-      items: updatedItemsArr,
-      totalAmount: updatedTotalAmount,
-    };
-  }
-  if (action.type === "REMOVE") {
-    const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.id
-    );
-    const existingItem = state.items[existingCartItemIndex];
-    let updatedTotalAmount = state.totalAmount - existingItem.price;
-    let updatedItemsArr;
-    if(existingItem.quantity === 1) {
-        updatedItemsArr = state.items.filter(item => item.id !== action.id);
-    }
-    else{
-        const updatedItem = {...existingItem, quantity: existingItem.quantity - 1};
-        updatedItemsArr = [...state.items];
-        updatedItemsArr[existingCartItemIndex] = updatedItem;
-    }
-    return {
-        items: updatedItemsArr,
-        totalAmount: updatedTotalAmount,
-    }
-  }
-  return defaultCartState;
-};
+import axios from 'axios';
 
 const CartProvider = (props) => {
-  // const [items, setUpdateItems] = useState([]);
+  const [item, setItem] = useState([]);
+  const userMail = localStorage.getItem('email')
+  let cleanMail = userMail.split('.').join('')
+  cleanMail = cleanMail.split('@').join('')
+  console.log(cleanMail);
 
-  const [cartState, dispatchCartAction] = useReducer(
-    CartReducer,
-    defaultCartState
-  );
-
-  const addItemToCartHandler = (item) => {
-    // setUpdateItems([...items, item]);
-    console.log("InsideHandler", item);
-    dispatchCartAction({ type: "ADD", item: item });
+  const addItemToCartHandler = (product) => {
+    const newArr = [...item]
+    let hasItem = -1;
+    newArr.forEach((productItem, index) => {
+      if(product.id === productItem.id){
+        hasItem = index;
+        newArr[index].quantity = newArr[index].quantity + product.quantity;
+        
+      }
+    })
+    if(hasItem !== -1){
+      axios.post(`https://crudcrud.com/api/869a40fa73fb475f8a6b81b004e1353e/${cleanMail}`, product).then((res) => {
+        console.log(res);
+        newArr[hasItem]._id=res.data._id;
+        setItem(newArr);
+      })
+     
+    }
+    else{
+      axios.post(`https://crudcrud.com/api/869a40fa73fb475f8a6b81b004e1353e/${cleanMail}`, product).then((res) => {
+        console.log(res);
+        setItem([...item, res.data]);
+      })
+      
+    }
+    
   };
 
   const removeItemFromCartHandler = (id) => {
-    // const newItem = [...items];
-    // newItem.forEach((element, index) => {
-    //     if(id.id === element.id) {
-    //         newItem.splice(index, 1);
-    //     }
-    // });
-    // setUpdateItems(newItem);
-    console.log('insideHandler', id);
-    dispatchCartAction({ type: "REMOVE", id: id });
+    const newArr = [...item]
+    let hasItem = false;
+    newArr.forEach((productItem, index) => {
+      if(id === productItem._id && productItem.quantity === 1){
+        hasItem = true;
+       newArr.splice(index, 1)
+        
+      }
+      else if(id === productItem._id){
+        hasItem = true;
+        newArr[index].quantity = newArr[index].quantity - 1;
+      }
+    })
+    if(hasItem){
+      setItem(newArr);
+    }
+    else{
+      setItem([...item]);
+    }
+    axios.delete(`https://crudcrud.com/api/869a40fa73fb475f8a6b81b004e1353e/${cleanMail}/${id}`)
   };
   const cartContext = {
-    items: cartState.items,
-    totalAmount: cartState.totalAmount,
+    items: item,
+    totalAmount: 0,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
   };

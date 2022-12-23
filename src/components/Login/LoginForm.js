@@ -3,12 +3,14 @@ import React, { useState, useRef, useContext } from "react";
 // import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../NewStore/auth-context";
+// import CartContext from "../../store/cart-context";
 import MainHeader from "../Header/MainHeader";
 import classes from "./LoginForm.module.css";
 
 const LoginForm = () => {
   
     const authCtx = useContext(AuthContext);
+
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -18,6 +20,7 @@ const LoginForm = () => {
   const switchLoginModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -60,8 +63,10 @@ const LoginForm = () => {
           });
         }
       }).then((data) => {
-        // console.log(data);
-        authCtx.login(data.idToken)
+        console.log(data);
+        authCtx.login(data.idToken);
+        localStorage.setItem("token", data.idToken);
+        localStorage.setItem("email", data.email);
   
       }).catch((err) => {
         alert(err.message);
