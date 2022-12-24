@@ -30,16 +30,10 @@ const productsArr = [
   },
 ];
 const CardForm = (props) => {
-  // const amountInputRef = useRef();
+
   const submitHandler = (event) => {
     event.preventDefault();
-    // const enteredAmount = amountInputRef.current.value;
-    // const enteredAmountNumber = +enteredAmount;
-
-    // if(enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 10){
-    //   return;
-    // }
-    // props.onAddToCart(enteredAmountNumber);
+    
   };
   return (
     <>

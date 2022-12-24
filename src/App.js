@@ -13,17 +13,15 @@ import LoginPage from "./components/Pages/LoginPage";
 import ProfilePage from "./components/Pages/ProfilePage";
 import AuthContext from "./NewStore/auth-context";
 
+
 let App = (props) => {
   const authCtx = useContext(AuthContext);
   const cartCtx = useContext(CartContext);
   const [show, setShow] = useState(false);
-  // const [users, setUsers] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
- 
-
+  
   const addToCartHandler = (item) => {
     console.log(item);
     cartCtx.addItem({
@@ -39,7 +37,7 @@ let App = (props) => {
   };
 
   console.log(cartCtx.items);
-
+  
   return (
     <>
       {show && <Cart onHide={handleClose} onRemove={onRemove} />}
