@@ -23,7 +23,7 @@ let App = (props) => {
   const handleShow = () => setShow(true);
   
   const addToCartHandler = (item) => {
-    console.log(item);
+    // console.log(item);
     cartCtx.addItem({
       id: item.id,
       title: item.title,
@@ -36,7 +36,6 @@ let App = (props) => {
     cartCtx.removeItem(id);
   };
 
-  console.log(cartCtx.items);
   
   return (
     <>

@@ -64,7 +64,7 @@ const LoginForm = () => {
         }
       }).then((data) => {
         console.log(data);
-        authCtx.login(data.idToken);
+        authCtx.login(data.idToken, data.email);
         localStorage.setItem("token", data.idToken);
         localStorage.setItem("email", data.email);
   

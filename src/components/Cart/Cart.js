@@ -53,7 +53,7 @@ const Cart = (props) => {
               />
             </Card.Body>
             <span>
-              <Button className="closebtn" onClick={() => props.onRemove(item._id)}>
+              <Button className="closebtn" onClick={() => props.onRemove(item.id)}>
                 Remove Item
               </Button>
             </span>
