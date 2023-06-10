@@ -13,7 +13,7 @@ const ContactUs = (props) => {
   const addUserHandler = (user) => {
     console.log(user);
      fetch(
-      "https://ecom-website-eb6b8-default-rtdb.firebaseio.com/users.json",
+      "https://ecommerce-website-70ee8-default-rtdb.firebaseio.com/users.json",
       {
         method: "POST",
         body: JSON.stringify(user),

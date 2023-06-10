@@ -1,18 +1,24 @@
 import { Route, Switch, Redirect } from "react-router-dom";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Suspense } from "react";
 import Cart from "./components/Cart/Cart";
 import "./App.css";
 import CardForm from "./components/Card/CardForm";
 import CartContext from "./store/cart-context";
-import About from "./components/Pages/About";
-import Home from "./components/Pages/Home";
+// import About from "./components/Pages/About";
+// import Home from "./components/Pages/Home";
 import MainHeader from "./components/Header/MainHeader";
-import ContactUs from "./components/Pages/ContactUs";
-import Product from "./components/Pages/Product";
-import LoginPage from "./components/Pages/LoginPage";
-import ProfilePage from "./components/Pages/ProfilePage";
+// import ContactUs from "./components/Pages/ContactUs";
+// import Product from "./components/Pages/Product";
+// import LoginPage from "./components/Pages/LoginPage";
+// import ProfilePage from "./components/Pages/ProfilePage";
 import AuthContext from "./NewStore/auth-context";
 
+const About = React.lazy(() => import('./components/Pages/About'))
+const Home = React.lazy(() => import('./components/Pages/Home'))
+const ContactUs = React.lazy(() => import('./components/Pages/ContactUs'))
+const LoginPage = React.lazy(() => import('./components/Pages/LoginPage'))
+const ProfilePage = React.lazy(() => import('./components/Pages/ProfilePage'))
+const Product = React.lazy(() => import('./components/Pages/Product'));
 
 let App = (props) => {
   const authCtx = useContext(AuthContext);
@@ -41,6 +47,7 @@ let App = (props) => {
     <>
       {show && <Cart onHide={handleClose} onRemove={onRemove} />}
       <main>
+        <Suspense fallback={<h2>Getting You There...</h2>}>
         <Switch>
           {!authCtx.isLoggedIn && <Route path="/" exact>
             <LoginPage />
@@ -80,6 +87,7 @@ let App = (props) => {
         <Redirect to="/" />
       </Route>
       </Switch>
+      </Suspense>
       </main>
       
     </>

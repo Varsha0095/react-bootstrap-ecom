@@ -17,7 +17,7 @@ const CartProvider = (props) => {
     const fetchingData = async () => {
       try {
         const response = await axios.get(
-          `https://ecom-website-eb6b8-default-rtdb.firebaseio.com/${cleanMail}.json`
+          `https://ecommerce-website-70ee8-default-rtdb.firebaseio.com/${cleanMail}.json`
         );
         response.data === null ? setItem([]) : setItem(response.data);
         console.log(response.data);
@@ -44,7 +44,7 @@ const CartProvider = (props) => {
   const addingItems = useCallback (async () => {
     try {
       const response = await axios.put(
-        `https://ecom-website-eb6b8-default-rtdb.firebaseio.com/${cleanMail}.json`,
+        `https://ecommerce-website-70ee8-default-rtdb.firebaseio.com/${cleanMail}.json`,
         item
       );
       console.log(response);
