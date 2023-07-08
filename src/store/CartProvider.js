@@ -20,7 +20,7 @@ const CartProvider = (props) => {
           `https://ecommerce-website-70ee8-default-rtdb.firebaseio.com/${cleanMail}.json`
         );
         response.data === null ? setItem([]) : setItem(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -47,7 +47,7 @@ const CartProvider = (props) => {
         `https://ecommerce-website-70ee8-default-rtdb.firebaseio.com/${cleanMail}.json`,
         item
       );
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +73,7 @@ const CartProvider = (props) => {
     const newArr = [...item];
     console.log("product ", id);
     newArr.forEach((productItem, index) => {
-      console.log(productItem.id);
+      // console.log(productItem.id);
       if (id === productItem.id && productItem.quantity === 1) {
         newArr.splice(index, 1);
         setItem(newArr);
